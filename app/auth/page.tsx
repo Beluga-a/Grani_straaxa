@@ -145,12 +145,6 @@ function AuthForm() {
               </div>
               <button className="form-submit" onClick={doLogin}>Войти</button>
 
-              <div className={styles.divider} style={{ marginTop: 24 }}>Тест-аккаунты</div>
-              <div className={styles.quickBtns}>
-                <button className={styles.qbtn} onClick={() => quick('user')}><Icon name="user" size={12} /> User</button>
-                <button className={`${styles.qbtn} ${styles.qbtnAdmin}`} onClick={() => quick('admin')}><Icon name="settings" size={12} /> Admin</button>
-                <button className={`${styles.qbtn} ${styles.qbtnDirector}`} onClick={() => quick('director')}><Icon name="crown" size={12} /> Директор</button>
-              </div>
             </>
           )}
 
