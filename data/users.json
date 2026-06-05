@@ -1,0 +1,30 @@
+[
+  {
+    "email": "user@granistrakha.ru",
+    "password": "user123",
+    "role": "user",
+    "name": "Алексей Морозов",
+    "phone": "+7 (999) 111-11-11"
+  },
+  {
+    "email": "admin@granistrakha.ru",
+    "password": "admin123",
+    "role": "admin",
+    "name": "Елена Смирнова",
+    "phone": "+7 (999) 222-22-22"
+  },
+  {
+    "email": "boss@granistrakha.ru",
+    "password": "director123",
+    "role": "director",
+    "name": "Виктор Страхов",
+    "phone": "+7 (999) 333-33-33"
+  },
+  {
+    "email": "sobolevd526@gmail.com",
+    "password": "ZXCZXZXCQSD132",
+    "role": "user",
+    "name": "сммс авваку",
+    "phone": ""
+  }
+]

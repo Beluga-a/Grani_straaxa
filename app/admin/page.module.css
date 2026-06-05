@@ -1,0 +1,27 @@
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 64px)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.sidebar{background:var(--off-black);border-right:1px solid var(--border)}
+.sideHead{padding:24px 20px;border-bottom:1px solid var(--border)}
+.navItem{display:flex;align-items:center;gap:10px;padding:11px 20px;cursor:pointer;font-size:12.5px;color:var(--text-soft);border-left:2px solid transparent;transition:all .2s}
+.navItem:hover,.navItem:focus-visible{color:var(--white);background:var(--red-glow);padding-left:24px;outline:none}
+.navActive{color:var(--white);border-left-color:var(--red);background:var(--red-glow)}
+.content{padding:36px;background:var(--black);min-width:0;overflow-x:hidden}
+@media(max-width:900px){.content{padding:20px}}
+.statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:4px}
+@media(max-width:900px){.statGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.statGrid{grid-template-columns:1fr}}
+.statCard{background:var(--panel);padding:22px 20px;transition:background .2s}
+.statCard:hover{background:var(--off-black)}
+.questTable{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.tableWrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.questRow{background:var(--black);display:flex;align-items:center;gap:16px;padding:16px;transition:background .2s}
+.questRow:hover{background:var(--off-black)}
+.questHidden{opacity:.5}
+.questPreview{width:56px;height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.questInfo{flex:1;min-width:0}
+.questActions{display:flex;gap:6px;flex-shrink:0}
+.aBtn{width:34px;height:34px;background:var(--panel);border:1px solid var(--border);font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.aBtn:hover{border-color:rgba(200,0,10,.4)}
+.aBtnWarn:hover{background:rgba(200,140,0,.12);border-color:rgba(200,140,0,.4)}
+.aBtnOk:hover{background:rgba(0,150,60,.1);border-color:rgba(0,180,60,.3)}
+.aBtnDel:hover{background:rgba(200,0,10,.12);border-color:var(--red)}

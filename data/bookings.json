@@ -1,0 +1,71 @@
+[
+  {
+    "id": "GS-3UXVG8",
+    "userName": "Алексей Морозов",
+    "userEmail": "user@granistrakha.ru",
+    "phone": "+7 (999) 111-11-11",
+    "quest": "Проклятый лес",
+    "date": "14.05.2026",
+    "time": "21:00",
+    "players": 6,
+    "status": "confirmed",
+    "amount": "5 900 ₽",
+    "amountNum": 5900,
+    "createdAt": 1778721117511
+  },
+  {
+    "id": "GS-WHHDNV",
+    "userName": "Алексей Морозов",
+    "userEmail": "user@granistrakha.ru",
+    "phone": "+7 (999) 111-11-11",
+    "quest": "Психиатрическая лечебница",
+    "date": "14.05.2026",
+    "time": "20:00",
+    "players": 6,
+    "status": "pending",
+    "amount": "5 000 ₽",
+    "amountNum": 5000,
+    "createdAt": 1778720648411
+  },
+  {
+    "id": "GS-D4NUA2",
+    "userName": "Виктор Страхов",
+    "userEmail": "boss@granistrakha.ru",
+    "phone": "+7 (999) 333-33-33",
+    "quest": "Психиатрическая лечебница",
+    "date": "14.05.2026",
+    "time": "19:00",
+    "players": 3,
+    "status": "pending",
+    "amount": "3 500 ₽",
+    "amountNum": 3500,
+    "createdAt": 1778720054710
+  },
+  {
+    "id": "GS-S9Q0U4",
+    "userName": "сммс авваку",
+    "userEmail": "sobolevd526@gmail.com",
+    "phone": "3542345334354654",
+    "quest": "Психиатрическая лечебница",
+    "date": "14.05.2026",
+    "time": "21:00",
+    "players": 4,
+    "status": "confirmed",
+    "amount": "4 000 ₽",
+    "amountNum": 4000,
+    "createdAt": 1778684885143
+  },
+  {
+    "id": "GS-HWZ9VL",
+    "userName": "Алексей Морозов",
+    "userEmail": "user@granistrakha.ru",
+    "phone": "+7 (999) 111-11-11",
+    "quest": "Корабль мертвецов",
+    "date": "15.05.2026",
+    "time": "16:00",
+    "players": 4,
+    "status": "confirmed",
+    "amount": "от 2 800 ₽",
+    "createdAt": 1778682183687
+  }
+]

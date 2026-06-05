@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:\\\\Users\\\\Константин\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\88b51a79-3ddd-4b74-ab92-4078448fc7bd\\\\1a9a1244-4140-45f0-b962-a0b0d776b108\\\\skills\\\\docx\")",
+      "Bash(python -c \"import sys; sys.stdout.reconfigure\\(encoding='utf-8'\\)\")",
+      "Bash(python fix_report.py)",
+      "Bash(python -c ' *)",
+      "Bash(python fix_pz.py)",
+      "Bash(python scripts/office/pack.py unpacked_pz/ \"C:\\\\Users\\\\Константин\\\\Desktop\\\\пз_Загибалов \\(1\\).docx\" --original \"C:\\\\Users\\\\Константин\\\\Desktop\\\\пз_Загибалов \\(1\\).docx\" --validate false)",
+      "Bash(python scripts/office/unpack.py \"C:\\\\Users\\\\Константин\\\\Desktop\\\\пз_Загибалов \\(1\\).docx\" unpacked_pz_fresh/)",
+      "Bash(dir \"C:\\\\Users\\\\Константин\\\\Desktop\\\\отчёт*\")",
+      "Bash(python scripts/office/unpack.py \"C:\\\\Users\\\\Константин\\\\Desktop\\\\шаблон отчет пдп.docx\" unpacked_template/)",
+      "Read(//c/Users/Константин/Desktop/**)",
+      "Bash(python \"C:\\\\Users\\\\Константин\\\\AppData\\\\Roaming\\\\Claude\\\\scripts\\\\extract-text.py\" \"отчёт_ПДП_Загибалов.docx\")",
+      "Bash(python \"C:\\\\Users\\\\Константин\\\\AppData\\\\Roaming\\\\Claude\\\\scripts\\\\extract-text.py\" \"C:\\\\Users\\\\Константин\\\\Desktop\\\\отчёт_ПДП_Загибалов.docx\")",
+      "Bash(python C:\\\\Users\\\\Константин\\\\AppData\\\\Roaming\\\\Claude\\\\scripts\\\\extract-text.py \"C:\\\\Users\\\\Константин\\\\Desktop\\\\отчёт_ПДП_Загибалов.docx\")",
+      "Bash(more)",
+      "Bash(extract-text \"C:\\\\Users\\\\Константин\\\\Desktop\\\\отчёт_ПДП_Загибалов.docx\")",
+      "Read(//c/Users/Константин/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/88b51a79-3ddd-4b74-ab92-4078448fc7bd/1a9a1244-4140-45f0-b962-a0b0d776b108/skills/docx/**)",
+      "Bash(python scripts/office/unpack.py \"C:\\\\Users\\\\Константин\\\\Desktop\\\\отчет ПДП HealthTrack.docx\" unpacked_health/)",
+      "Bash(python scripts/office/unpack.py \"C:\\\\Users\\\\Константин\\\\Desktop\\\\отчёт_ПДП_Загибалов.docx\" unpacked_zagib/)",
+      "Bash(pandoc unpacked_health/word/document.xml -f docx -t markdown)",
+      "Bash(python -c \"import sys; data=sys.stdin.buffer.read\\(\\); print\\(data.decode\\('utf-8', errors='replace'\\)[:8000]\\)\")"
+    ]
+  }
+}

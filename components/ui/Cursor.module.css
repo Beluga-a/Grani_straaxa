@@ -1,0 +1,19 @@
+.cur {
+  position: fixed; z-index: var(--z-cursor, 99999); pointer-events: none;
+  width: 8px; height: 8px; background: var(--red); border-radius: 50%;
+  left: -50px; top: -50px;
+  transform: translate(-50%,-50%);
+  transition: transform .1s ease, opacity .25s ease;
+  will-change: left, top, transform;
+}
+.ring {
+  position: fixed; z-index: calc(var(--z-cursor, 99999) - 1); pointer-events: none;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(200,0,10,.5); border-radius: 50%;
+  left: -50px; top: -50px;
+  transform: translate(-50%,-50%);
+  transition: transform .2s ease, border-color .2s;
+  will-change: left, top;
+}
+:global(body.hovering) .cur  { transform: translate(-50%,-50%) scale(1.8); }
+:global(body.hovering) .ring { transform: translate(-50%,-50%) scale(1.5); border-color: rgba(200,0,10,.9); }

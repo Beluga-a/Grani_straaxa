@@ -1,0 +1,140 @@
+.summary {
+  display: grid; grid-template-columns: 240px 1fr;
+  gap: 48px; margin-bottom: 56px;
+}
+@media(max-width:800px) { .summary { grid-template-columns: 1fr; } }
+
+.scoreBox {
+  background: var(--panel); border: 1px solid var(--border);
+  padding: 36px; text-align: center;
+  animation: fadeInUp .5s ease both;
+}
+
+/* Animated rating bar */
+.bar {
+  flex: 1; height: 3px; background: var(--muted2); position: relative; overflow: hidden;
+}
+.barFill {
+  height: 100%; background: var(--red);
+  width: var(--bar-w, 0%);
+  animation: barReveal .9s cubic-bezier(.16,1,.3,1) both;
+  animation-delay: var(--bar-delay, 0s);
+}
+
+/* ── Desktop grid ───────────────────────────────────────────── */
+.grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--border);
+}
+
+/* На мобиле прячем сетку, показываем карусель */
+@media(max-width:900px) {
+  .grid { display: none; }
+}
+
+.rcard {
+  background: var(--bg-card); padding: 36px;
+  transition: background .25s, box-shadow .3s;
+  position: relative; overflow: hidden;
+  animation: fadeInUp .55s cubic-bezier(.16,1,.3,1) both;
+}
+.rcard:nth-child(1) { animation-delay: .06s; }
+.rcard:nth-child(2) { animation-delay: .13s; }
+.rcard:nth-child(3) { animation-delay: .20s; }
+.rcard:nth-child(4) { animation-delay: .27s; }
+.rcard:nth-child(5) { animation-delay: .34s; }
+.rcard:nth-child(6) { animation-delay: .41s; }
+.rcard::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,0,10,.5), transparent);
+  transform: scaleX(0); transition: transform .4s ease; transform-origin: center;
+}
+.rcard:hover { background: var(--bg-card-hover); }
+.rcard:hover::before { transform: scaleX(1); }
+
+/* ── Mobile carousel ────────────────────────────────────────── */
+.carouselWrap {
+  display: none;
+}
+
+@media(max-width:900px) {
+  .carouselWrap {
+    display: block;
+  }
+}
+
+.carouselViewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  touch-action: pan-y;
+}
+
+.carouselCard {
+  flex: 0 0 100%;
+  min-width: 0;
+  animation: none !important;
+}
+
+/* Навигация */
+.carouselNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.carouselArrow {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--white);
+  width: 40px; height: 40px;
+  font-size: 22px; line-height: 1;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.carouselArrow:hover:not(:disabled) {
+  background: var(--off-black);
+  border-color: var(--red);
+}
+.carouselArrow:disabled {
+  opacity: .3;
+  cursor: default;
+}
+
+.carouselDots {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 200px;
+}
+
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--muted2);
+  border: none; padding: 0; cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.dotActive {
+  background: var(--red);
+  transform: scale(1.5);
+}
+
+.carouselCounter {
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .12em;
+  margin-top: 10px;
+}

@@ -1,0 +1,47 @@
+﻿.item {
+  border-bottom: 1px solid var(--border);
+  transition: background .2s;
+}
+.item:first-child { border-top: 1px solid var(--border); }
+
+.q {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 22px 0; gap: 16px;
+  background: transparent; border: none; color: var(--white);
+  font-family: var(--sans); font-size: 14px; font-weight: 300;
+  text-align: left; transition: color .2s;
+}
+.q:hover { color: var(--white); }
+.itemOpen .q { color: var(--red); }
+
+.plus {
+  font-family: var(--mono); font-size: 18px; color: var(--red);
+  flex-shrink: 0; transition: transform .35s cubic-bezier(.16,1,.3,1), color .2s;
+  line-height: 1; width: 20px; text-align: center;
+}
+
+/* Grid trick for smooth height animation */
+.body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .38s cubic-bezier(.16,1,.3,1);
+}
+.itemOpen .body {
+  grid-template-rows: 1fr;
+}
+.answer {
+  overflow: hidden;
+  font-size: 13px; color: var(--text-soft); line-height: 1.85; font-weight: 300;
+  padding-bottom: 0;
+  transition: padding-bottom .38s ease;
+}
+.itemOpen .answer { padding-bottom: 22px; }
+
+/* Active item left accent */
+.itemOpen {
+  background: var(--bg-card);
+  border-left: 2px solid var(--red);
+  padding-left: 18px;
+  margin-left: -20px;
+  padding-right: 0;
+}
