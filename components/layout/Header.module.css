@@ -47,7 +47,7 @@
 
 /* ── Desktop right panel ────────────────────────────────────── */
 .right { display:flex;align-items:center;gap:14px; }
-.phone { font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.06em; }
+.phone { font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.06em;white-space:nowrap; }
 .userBtn {
   color:var(--text-soft);font-size:13px;letter-spacing:.1em;
   background:none;border:none;cursor:pointer;transition:color .2s;
@@ -89,6 +89,9 @@
 .burgerOpen span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .phone { display: none; }
+}
 @media (max-width: 900px) {
   .nav { padding: 0 20px; }
   .center { display: none; }

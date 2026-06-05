@@ -13,7 +13,7 @@ export default function AboutPage() {
       </div>
 
       {/* ── STATS ── */}
-      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:1,background:'var(--border)'}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',gap:1,background:'var(--border)'}}>
         {[{n:'7+',l:'лет работы'},{n:'12',l:'квестов'},{n:'50К+',l:'игроков'},{n:'4.9',l:'рейтинг'}].map(s=>(
           <div key={s.l} className="stat-cell"><div className="stat-num">{s.n}</div><div className="stat-label">{s.l}</div></div>
         ))}
@@ -21,7 +21,7 @@ export default function AboutPage() {
 
       {/* ── HISTORY ── */}
       <section className="section">
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:64,alignItems:'center',marginBottom:96}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))',gap:48,alignItems:'center',marginBottom:64}}>
           <div style={{
             height:420,background:'var(--panel)',border:'1px solid var(--border)',
             display:'flex',alignItems:'center',justifyContent:'center',
@@ -50,7 +50,7 @@ export default function AboutPage() {
         {/* ── TIMELINE ── */}
         <div className="eyebrow">Хронология</div>
         <h2 className="h2" style={{marginBottom:48}}>Как мы росли</h2>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:1,background:'var(--border)',marginBottom:96}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',gap:1,background:'var(--border)',marginBottom:96}}>
           {[
             {year:'2017',title:'Первый квест',text:'Открытие «Психиатрической лечебницы». 80 м², 1 актёр, первые 100 игроков.'},
             {year:'2019',title:'Расширение',text:'4 квеста, собственная мастерская декораций, 5 000 игроков в год.'},
@@ -69,7 +69,7 @@ export default function AboutPage() {
         </div>
 
         {/* ── MISSION & VALUES ── */}
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:48,marginBottom:96}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:32,marginBottom:64}}>
           <div style={{background:'var(--off-black)',border:'1px solid var(--border)',padding:40}}>
             <div className="eyebrow" style={{marginBottom:16}}>Миссия</div>
             <h3 style={{fontFamily:'var(--serif)',fontSize:26,fontWeight:300,marginBottom:20,lineHeight:1.2}}>Мы создаём не квесты — мы создаём воспоминания</h3>
@@ -98,7 +98,7 @@ export default function AboutPage() {
         {/* ── TEAM ── */}
         <div className="eyebrow">Команда</div>
         <h2 className="h2" style={{marginBottom:40}}>Те, кто создают страх</h2>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:1,background:'var(--border)',marginBottom:96}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(200px,1fr))',gap:1,background:'var(--border)',marginBottom:96}}>
           {TEAM.map(t=>(
             <div key={t.name} style={{background:'var(--bg-card)',padding:'36px 24px',textAlign:'center'}}>
               <div style={{width:72,height:72,borderRadius:'50%',background:'var(--panel)',border:'1px solid var(--border)',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--red)',margin:'0 auto 16px'}}>
@@ -128,7 +128,7 @@ export default function AboutPage() {
         </div>
 
         {/* ── CONTACTS ── */}
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:1,background:'var(--border)'}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:1,background:'var(--border)'}}>
           <div style={{background:'var(--off-black)',padding:'40px 36px'}}>
             <div className="eyebrow" style={{marginBottom:20}}>Контакты</div>
             <div style={{display:'grid',gap:16}}>

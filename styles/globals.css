@@ -587,6 +587,24 @@ body {
 }
 .modal-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
+/* ═══════════════════════════════════════
+   RESPONSIVE HELPERS
+═══════════════════════════════════════ */
+.grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.grid-sidebar { display: grid; grid-template-columns: 280px 1fr; gap: 32px; }
+.grid-contact { display: grid; grid-template-columns: 1fr 400px; gap: 56px; }
+
+@media (max-width: 768px) {
+  .grid-2col    { grid-template-columns: 1fr; gap: 24px; }
+  .grid-sidebar { grid-template-columns: 1fr; }
+  .grid-contact { grid-template-columns: 1fr; gap: 32px; }
+  .stats-row    { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .h1 { font-size: clamp(36px, 10vw, 52px); }
+}
+
 body.modal-open { overflow: hidden; }
 
 /* ═══════════════════════════════════════

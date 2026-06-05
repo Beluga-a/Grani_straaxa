@@ -372,7 +372,7 @@ export default function Home() {
           </div>
           <Link href="/feartest" className="btn btn-outline" style={{fontSize:12}}>Пройти тест на страх →</Link>
         </div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:1,background:'var(--border)'}}>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(220px,1fr))',gap:1,background:'var(--border)'}}>
           {[
             {n:'94%',l:'почувствовали настоящий страх'},
             {n:'3×',l:'выше адреналин, чем в кино'},

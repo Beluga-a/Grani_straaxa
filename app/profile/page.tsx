@@ -53,7 +53,7 @@ export default function ProfilePage() {
       </div>
 
       <section className="section" style={{paddingTop:40}}>
-        <div style={{maxWidth:1060,margin:"0 auto",display:"grid",gridTemplateColumns:"280px 1fr",gap:32}}>
+        <div className="grid-sidebar" style={{maxWidth:1060,margin:"0 auto"}}>
 
           {/* ── Левая колонка ── */}
           <div style={{display:"flex",flexDirection:"column",gap:8}}>

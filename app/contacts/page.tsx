@@ -22,7 +22,7 @@ export default function ContactsPage() {
     <>
       <div className="section-hero"><div className="eyebrow">Контакты</div><h1 className="h1">Найди нас</h1></div>
       <section className="section">
-        <div style={{display:"grid",gridTemplateColumns:"1fr 400px",gap:56,maxWidth:1060,margin:"0 auto"}}>
+        <div className="grid-contact" style={{maxWidth:1060,margin:"0 auto"}}>
           <div>
             {[{icon:"pin" as IconName,label:"Адрес",val:"ул. Бабушкина, 66, 2-й этаж\nВход с торца, красная дверь"},{icon:"phone" as IconName,label:"Телефон",val:"8 999 420 31 41\nПн–Вс 09:00–22:00"},{icon:"mail" as IconName,label:"Email",val:"granistraha526@gmail.com"},{icon:"chat" as IconName,label:"Telegram",val:"@GraniStrakhaBot — 24/7"}].map(c=>(
               <div key={c.label} style={{display:"flex",gap:14,marginBottom:20,alignItems:"flex-start"}}>

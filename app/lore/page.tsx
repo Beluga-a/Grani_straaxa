@@ -9,7 +9,7 @@ export default function LorePage() {
       <div className="section-hero"><div className="eyebrow">История</div><h1 className="h1">Легенда места</h1></div>
       <section className="section">
         {LORE.map((l,i)=>(
-          <div key={i} style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:1,background:"var(--border)",marginBottom:1,...(i%2!==0?{direction:"rtl"}:{})}}>
+          <div key={i} style={{display:"grid",gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:1,background:"var(--border)",marginBottom:1,...(i%2!==0?{direction:"rtl"}:{})}}>
             <div style={{background:"var(--bg-card)",padding:"56px 48px",...(i%2!==0?{direction:"ltr"}:{})}}>
               <div className="eyebrow" style={{marginBottom:12}}>{QUESTS[l.q].name}</div>
               <h2 style={{fontFamily:"var(--serif)",fontSize:"clamp(24px,3vw,38px)",fontWeight:300,marginBottom:20,lineHeight:1.1}}>{l.title}</h2>
