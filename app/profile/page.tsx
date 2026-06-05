@@ -51,8 +51,8 @@ export default function ProfilePage() {
               <div style={{width:68,height:68,borderRadius:"50%",background:"var(--red)",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"var(--serif)",fontSize:26,margin:"0 auto 14px"}}>{user.name[0]}</div>
               <div style={{fontFamily:"var(--serif)",fontSize:20,fontWeight:300,marginBottom:4}}>{user.name}</div>
               <div style={{fontFamily:"var(--mono)",fontSize:12,letterSpacing:".16em",color:"var(--red)"}}>Уровень: Выживший</div>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:1,background:"var(--border)",marginTop:16}}>
-                {[{v:String(doneCount),k:"Квестов"},{v:"4",k:"Достиж."}].map(s=>(
+              <div style={{display:"grid",gridTemplateColumns:"1fr",gap:1,background:"var(--border)",marginTop:16}}>
+                {[{v:String(doneCount),k:"Квестов"}].map(s=>(
                   <div key={s.k} style={{background:"var(--bg-card)",padding:12,textAlign:"center"}}>
                     <div style={{fontFamily:"var(--serif)",fontSize:22,fontWeight:300}}>{s.v}</div>
                     <div style={{fontFamily:"var(--mono)",fontSize:12,letterSpacing:".14em",color:"var(--muted)"}}>{s.k}</div>
