@@ -121,7 +121,7 @@ export default function ProfilePage() {
               <div style={{background:"rgba(200,0,10,.06)",border:"1px solid rgba(200,0,10,.2)",borderLeft:"3px solid var(--red)",padding:"18px 24px",marginBottom:24}}>
                 <div style={{fontFamily:"var(--mono)",fontSize:11,letterSpacing:".14em",color:"var(--red)",marginBottom:8}}>БЛИЖАЙШИЙ КВЕСТ</div>
                 <div style={{fontSize:18,fontFamily:"var(--serif)",fontWeight:300,marginBottom:4}}>{upcoming[0].quest}</div>
-                <div style={{fontFamily:"var(--mono)",fontSize:12,color:"var(--muted)"}}><Icon name="calendar" size={12}/> {upcoming[0].date} в {upcoming[0].time} · {upcoming[0].people} чел.</div>
+                <div style={{fontFamily:"var(--mono)",fontSize:12,color:"var(--muted)"}}><Icon name="calendar" size={12}/> {upcoming[0].date} в {upcoming[0].time} · {upcoming[0].players} чел.</div>
               </div>
             )}
 
@@ -151,7 +151,7 @@ export default function ProfilePage() {
                   </span>
                   <div style={{flex:1}}>
                     <div style={{fontSize:14,fontWeight:300,marginBottom:3}}>{b.quest}</div>
-                    <div style={{fontFamily:"var(--mono)",fontSize:11,color:"var(--muted)"}}>{b.date} · {b.time} · {b.people} чел.</div>
+                    <div style={{fontFamily:"var(--mono)",fontSize:11,color:"var(--muted)"}}>{b.date} · {b.time} · {b.players} чел.</div>
                   </div>
                   <div style={{fontFamily:"var(--mono)",fontSize:11,color:"var(--muted)",letterSpacing:".08em"}}>{b.id}</div>
                 </div>
