@@ -208,7 +208,7 @@ export default function Home() {
         <div className={styles.heroNum}>01</div>
         <div className={styles.heroLine} />
         <div className={styles.heroContent}>
-          <div className={`${styles.heroTag} flicker`}><Icon name="warn" size={12} /> Horror Quest World · Est. 2017 · 18+</div>
+          <div className={`${styles.heroTag} flicker`}><Icon name="warn" size={12} /> Horror Quest World · Est. 2026 · 18+</div>
           <h1 className={styles.heroTitle}>
             <span className={styles.wordMain} data-text="Испытай">Испытай</span>
             <span className={styles.wordBlood}>настоящий</span>
@@ -223,7 +223,7 @@ export default function Home() {
             <span className={`${styles.heroBadge} ${styles.heroBadgeHot}`}><Icon name="skull" size={12} /> Живые актёры</span>
             <span className={styles.heroBadge}><Icon name="clock" size={12} /> 60–90 мин</span>
             <span className={styles.heroBadge}><Icon name="users" size={12} /> 2–10 игроков</span>
-            <span className={`${styles.heroBadge} ${styles.heroBadgeHot}`}><Icon name="trophy" size={12} /> Лучший квест 2024</span>
+            <span className={`${styles.heroBadge} ${styles.heroBadgeHot}`}><Icon name="trophy" size={12} /> Лучший квест 2026</span>
           </div>
           <p className={styles.heroDesc}>Премиальные хоррор-квесты с живыми актёрами, кинематографическими декорациями и авторскими сценариями. Только для смельчаков.</p>
           <div className={styles.heroBtns}>
