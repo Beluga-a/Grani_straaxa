@@ -188,20 +188,27 @@ function migrateFromJson(db: Database.Database) {
     }
   }
 
-  const galleryCount = (db.prepare('SELECT COUNT(*) as c FROM gallery').get() as any).c
-  if (galleryCount === 0) {
-    const galleryDir = path.join(process.cwd(), 'public', 'gallery')
-    if (fs.existsSync(galleryDir)) {
-      const ins = db.prepare('INSERT INTO gallery (cat, label, img, h) VALUES (?,?,?,?)')
-      const files = fs.readdirSync(galleryDir).filter(f => /\.(webp|jpg|jpeg|png|avif)$/i.test(f))
-      const heights = [240, 320, 190, 270, 220, 300, 250, 200, 340]
-      files.forEach((file, i) => {
-        const data = fs.readFileSync(path.join(galleryDir, file))
-        const ext = file.split('.').pop()!
-        const mime = ext === 'webp' ? 'image/webp' : ext === 'png' ? 'image/png' : ext === 'avif' ? 'image/avif' : 'image/jpeg'
-        const b64 = `data:${mime};base64,${data.toString('base64')}`
-        ins.run('rooms', file.replace(/\.\w+$/, ''), b64, heights[i % heights.length])
-      })
+  const galleryDir = path.join(process.cwd(), 'public', 'gallery')
+  if (fs.existsSync(galleryDir)) {
+    const ins = db.prepare('INSERT INTO gallery (cat, label, img, h) VALUES (?,?,?,?)')
+    const files = fs.readdirSync(galleryDir).filter(f => /\.(webp|jpg|jpeg|png|avif)$/i.test(f))
+    const heights = [240, 320, 190, 270, 220, 300, 250, 200, 340]
+    const labelMap: Record<string, string> = {
+      'lab': 'Лаборатория', 'hospital': 'Психиатрическая лечебница',
     }
+    const catMap: Record<string, string> = {
+      'lab': 'rooms', 'hospital': 'rooms',
+    }
+    files.forEach((file, i) => {
+      const key = file.replace(/\.\w+$/, '')
+      const label = labelMap[key] || key
+      const existing = db.prepare('SELECT id FROM gallery WHERE label = ?').get(label)
+      if (existing) return
+      const data = fs.readFileSync(path.join(galleryDir, file))
+      const ext = file.split('.').pop()!
+      const mime = ext === 'webp' ? 'image/webp' : ext === 'png' ? 'image/png' : ext === 'avif' ? 'image/avif' : 'image/jpeg'
+      const b64 = `data:${mime};base64,${data.toString('base64')}`
+      ins.run(catMap[key] || 'rooms', label, b64, heights[i % heights.length])
+    })
   }
 }

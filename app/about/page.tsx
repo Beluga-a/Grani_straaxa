@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))',gap:48,alignItems:'center',marginBottom:64}}>
           <div style={{height:420,position:'relative',overflow:'hidden',border:'1px solid var(--border)'}}>
             <img
-              src="https://images.unsplash.com/photo-1604147706283-d7119b5b822c?w=800&q=80"
+              src="/about.png"
               alt="История компании"
               style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}
             />
