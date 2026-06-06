@@ -113,6 +113,7 @@ export default function AdminPage() {
     { id:'bookings',  icon:'calendar', label:'Бронирования' },
     { id:'users',     icon:'users',    label:'Пользователи' },
     { id:'gallery',   icon:'palette',  label:'Галерея' },
+    { id:'reviews',   icon:'star',     label:'Отзывы' },
     ...(isDir ? [{ sec:'Аналитика' }, { id:'finance', icon:'star' as IconName, label:'Финансы' }, { sec:'Настройки' }, { id:'settings', icon:'settings' as IconName, label:'Настройки' }] : []),
     { sec:'Аккаунт' },
     { id:'myprofile', icon:'user',  label:'Мой профиль' },
@@ -444,6 +445,52 @@ export default function AdminPage() {
               {gallery.length === 0 && (
                 <div style={{fontFamily:'var(--mono)',fontSize:13,color:'var(--muted)',padding:40,textAlign:'center',border:'1px solid var(--border)'}}>
                   Галерея пуста — загрузите первое фото
+                </div>
+              )}
+            </>
+          )}
+
+          {panel === 'reviews' && (
+            <>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:24,flexWrap:'wrap',gap:12}}>
+                <h1 style={{fontFamily:'var(--serif)',fontSize:30,fontWeight:300}}>Отзывы</h1>
+                <div style={{fontFamily:'var(--mono)',fontSize:12,color:'var(--muted)',letterSpacing:'.1em'}}>{reviews.length} отзывов</div>
+              </div>
+              {reviews.length === 0 ? (
+                <div style={{fontFamily:'var(--mono)',fontSize:13,color:'var(--muted)',padding:40,textAlign:'center',border:'1px solid var(--border)'}}>
+                  Отзывов пока нет
+                </div>
+              ) : (
+                <div className={styles.tableWrap}>
+                  <table style={{width:'100%',minWidth:600,borderCollapse:'collapse',fontSize:12.5}}>
+                    <thead>
+                      <tr>{['Имя','Квест','Оценка','Текст','Дата','Удалить'].map(h=>(
+                        <th key={h} style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',textAlign:'left',fontFamily:'var(--mono)',fontSize:12,letterSpacing:'.14em',color:'var(--muted)',fontWeight:300,whiteSpace:'nowrap'}}>{h}</th>
+                      ))}</tr>
+                    </thead>
+                    <tbody>
+                      {reviews.map((r: any) => (
+                        <tr key={r.id}>
+                          <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',color:'var(--white)',fontWeight:300,whiteSpace:'nowrap'}}>{r.name}</td>
+                          <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',fontSize:12,color:'var(--text-soft)',whiteSpace:'nowrap'}}>{r.quest}</td>
+                          <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',color:'var(--red)',fontFamily:'var(--mono)',fontSize:13,whiteSpace:'nowrap'}}>{'★'.repeat(r.rating)}{'☆'.repeat(5-r.rating)}</td>
+                          <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',maxWidth:300,color:'var(--text-soft)',fontSize:12,lineHeight:1.5}}>{r.text}</td>
+                          <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',fontFamily:'var(--mono)',fontSize:11,color:'var(--muted)',whiteSpace:'nowrap'}}>{r.date}</td>
+                          <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',whiteSpace:'nowrap'}}>
+                            <button
+                              style={{padding:'4px 12px',border:'1px solid rgba(200,0,10,.4)',background:'transparent',color:'var(--red)',cursor:'pointer',fontFamily:'var(--mono)',fontSize:11}}
+                              onClick={async () => {
+                                if (!confirm(`Удалить отзыв от ${r.name}?`)) return
+                                await fetch(`/api/reviews/${r.id}`, { method:'DELETE' })
+                                setReviews((prev: any[]) => prev.filter((x: any) => x.id !== r.id))
+                                toast('✓ Отзыв удалён')
+                              }}
+                            >Удалить</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               )}
             </>
