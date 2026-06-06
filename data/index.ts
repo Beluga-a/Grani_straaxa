@@ -127,18 +127,26 @@ export const REVIEWS = [
 ]
 
 export const GALLERY = [
-  { cat: 'rooms',   h: 240, bg: 'linear-gradient(135deg,#100505,#060202)', label: 'Палата № 6',     img: 'https://images.unsplash.com/photo-1604147706283-d7119b5b822c?w=600&q=70' },
-  { cat: 'actors',  h: 320, bg: 'linear-gradient(135deg,#011001,#020602)', label: 'Актёр — Призрак', img: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600&q=70' },
-  { cat: 'rooms',   h: 190, bg: 'linear-gradient(135deg,#010110,#020206)', label: 'Лаборатория',    img: 'https://images.unsplash.com/photo-1532094349884-543559059d8c?w=600&q=70' },
-  { cat: 'players', h: 270, bg: 'linear-gradient(135deg,#0f0a00,#070400)', label: 'Момент страха',  img: 'https://images.unsplash.com/photo-1566413049735-7e5e34e0d7e7?w=600&q=70' },
-  { cat: 'rooms',   h: 220, bg: 'linear-gradient(135deg,#0f000f,#060006)', label: 'Подземный склеп', img: 'https://images.unsplash.com/photo-1574279606130-09b1c68c8104?w=600&q=70' },
-  { cat: 'actors',  h: 300, bg: 'linear-gradient(135deg,#100505,#060202)', label: 'Санитар',        img: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&q=70' },
-  { cat: 'rooms',   h: 250, bg: 'linear-gradient(135deg,#000f0f,#000606)', label: 'Трюм корабля',   img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=70' },
-  { cat: 'players', h: 200, bg: 'linear-gradient(135deg,#0a0000,#080000)', label: 'Команда после',  img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=70' },
-  { cat: 'rooms',   h: 340, bg: 'linear-gradient(135deg,#0f0a00,#080500)', label: 'Тронный зал',    img: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=600&q=70' },
-  { cat: 'actors',  h: 210, bg: 'linear-gradient(135deg,#0a000a,#050005)', label: 'Мертвец',        img: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600&q=70' },
-  { cat: 'players', h: 280, bg: 'linear-gradient(135deg,#000f0a,#000805)', label: 'Победители',     img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=70' },
-  { cat: 'rooms',   h: 230, bg: 'linear-gradient(135deg,#0a0a00,#060600)', label: 'Коридор тьмы',   img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=70' },
+  { cat: 'rooms',   h: 240, bg: 'linear-gradient(135deg,#100505,#060202)', label: 'Палата № 6',      img: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80' },
+  { cat: 'actors',  h: 320, bg: 'linear-gradient(135deg,#011001,#020602)', label: 'Актёр — Призрак', img: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600&q=80' },
+  { cat: 'rooms',   h: 190, bg: 'linear-gradient(135deg,#010110,#020206)', label: 'Лаборатория',     img: 'https://images.unsplash.com/photo-1582719188393-bb71ca45dbb9?w=600&q=80' },
+  { cat: 'players', h: 270, bg: 'linear-gradient(135deg,#0f0a00,#070400)', label: 'Момент страха',   img: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&q=80' },
+  { cat: 'rooms',   h: 220, bg: 'linear-gradient(135deg,#0f000f,#060006)', label: 'Подземный склеп', img: 'https://images.unsplash.com/photo-1477696557641-0e4bda9d0a7a?w=600&q=80' },
+  { cat: 'actors',  h: 300, bg: 'linear-gradient(135deg,#100505,#060202)', label: 'Санитар',         img: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&q=80' },
+  { cat: 'rooms',   h: 250, bg: 'linear-gradient(135deg,#000f0f,#000606)', label: 'Трюм корабля',    img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80' },
+  { cat: 'players', h: 200, bg: 'linear-gradient(135deg,#0a0000,#080000)', label: 'Команда после',   img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80' },
+  { cat: 'rooms',   h: 340, bg: 'linear-gradient(135deg,#0f0a00,#080500)', label: 'Тронный зал',     img: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80' },
+  { cat: 'actors',  h: 210, bg: 'linear-gradient(135deg,#0a000a,#050005)', label: 'Клоун',           img: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=600&q=80' },
+  { cat: 'players', h: 280, bg: 'linear-gradient(135deg,#000f0a,#000805)', label: 'Победители',      img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80' },
+  { cat: 'rooms',   h: 230, bg: 'linear-gradient(135deg,#0a0a00,#060600)', label: 'Коридор тьмы',    img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80' },
+  { cat: 'rooms',   h: 260, bg: 'linear-gradient(135deg,#100505,#060202)', label: 'Особняк призраков', img: 'https://images.unsplash.com/photo-1551524559-8af4e6624178?w=600&q=80' },
+  { cat: 'actors',  h: 290, bg: 'linear-gradient(135deg,#011001,#020602)', label: 'Существо',        img: 'https://images.unsplash.com/photo-1596436889106-be35e843f974?w=600&q=80' },
+  { cat: 'players', h: 220, bg: 'linear-gradient(135deg,#0f0a00,#070400)', label: 'В темноте',       img: 'https://images.unsplash.com/photo-1547816983-7870eabc0b69?w=600&q=80' },
+  { cat: 'rooms',   h: 310, bg: 'linear-gradient(135deg,#010110,#020206)', label: 'Секретная дверь', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
+  { cat: 'players', h: 240, bg: 'linear-gradient(135deg,#0a000a,#050005)', label: 'Эмоции',          img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&q=80' },
+  { cat: 'rooms',   h: 200, bg: 'linear-gradient(135deg,#000f0f,#000606)', label: 'Корабельный трюм', img: 'https://images.unsplash.com/photo-1566565258-de9a76fd2c9d?w=600&q=80' },
+  { cat: 'actors',  h: 350, bg: 'linear-gradient(135deg,#0f000f,#060006)', label: 'Ночной актёр',    img: 'https://images.unsplash.com/photo-1604147706283-d7119b5b822c?w=600&q=80' },
+  { cat: 'players', h: 180, bg: 'linear-gradient(135deg,#0f0a00,#080500)', label: 'Финал квеста',    img: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=80' },
 ]
 
 export const TEAM = [

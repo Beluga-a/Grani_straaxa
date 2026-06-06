@@ -14,9 +14,9 @@ export default function RulesPage() {
         <div style={{maxWidth:800,margin:"0 auto"}}>
           {RULES.map(s=>(
             <div key={s.title} style={{marginBottom:48,paddingBottom:48,borderBottom:"1px solid var(--border)"}}>
-              <h2 style={{fontFamily:"var(--serif)",fontSize:24,fontWeight:300,marginBottom:20,paddingLeft:14,borderLeft:"2px solid var(--red)"}}>{s.title}</h2>
+              <h2 style={{fontFamily:"var(--serif)",fontSize:28,fontWeight:300,marginBottom:20,paddingLeft:14,borderLeft:"2px solid var(--red)"}}>{s.title}</h2>
               <ul style={{listStyle:"none"}}>
-                {s.content.map(c=><li key={c} style={{fontSize:13,color:"var(--text-soft)",padding:"7px 0",borderBottom:"1px solid rgba(255,255,255,.03)",fontWeight:300,display:"flex",gap:10}}><span style={{color:"var(--red)",flexShrink:0}}>—</span>{c}</li>)}
+                {s.content.map(c=><li key={c} style={{fontSize:17,color:"var(--text-soft)",padding:"10px 0",borderBottom:"1px solid rgba(255,255,255,.05)",fontWeight:300,display:"flex",gap:12}}><span style={{color:"var(--red)",flexShrink:0}}>—</span>{c}</li>)}
               </ul>
             </div>
           ))}

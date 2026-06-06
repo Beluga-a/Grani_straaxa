@@ -163,7 +163,7 @@ export default function QuestsPage() {
       </section>
 
       <div className="cta-band">
-        <h2 className="cta-band-title">Готов <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.4)' }}>войти?</em></h2>
+        <h2 className="cta-band-title">Готов <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.4)' }}>пойти?</em></h2>
         <p className="cta-band-sub">Бронируй сейчас</p>
         <Link href="/booking" className="btn btn-primary">Забронировать</Link>
       </div>

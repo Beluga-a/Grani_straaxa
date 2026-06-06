@@ -22,12 +22,12 @@ export default function AboutPage() {
       {/* ── HISTORY ── */}
       <section className="section">
         <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))',gap:48,alignItems:'center',marginBottom:64}}>
-          <div style={{
-            height:420,background:'var(--panel)',border:'1px solid var(--border)',
-            display:'flex',alignItems:'center',justifyContent:'center',
-            color:'var(--muted)',position:'relative',overflow:'hidden'
-          }}>
-            <Icon name="theater" size={80}/>
+          <div style={{height:420,position:'relative',overflow:'hidden',border:'1px solid var(--border)'}}>
+            <img
+              src="https://images.unsplash.com/photo-1604147706283-d7119b5b822c?w=800&q=80"
+              alt="История компании"
+              style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}}
+            />
             <div style={{position:'absolute',bottom:0,left:0,right:0,height:2,background:'linear-gradient(90deg,transparent,var(--red),transparent)'}}/>
           </div>
           <div>
