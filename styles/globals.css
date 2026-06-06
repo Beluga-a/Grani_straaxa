@@ -125,13 +125,6 @@ body {
 .section-hero .h1 { animation: glitchH 14s ease-in-out infinite; }
 .section-hero .eyebrow { animation: fadeInLeft .5s ease both; }
 
-/* Section-hero всегда тёмная — для хоррор-эстетики */
-[data-theme="light"] .section-hero {
-  background: #0d0d0d;
-  border-bottom-color: #1e1e1e;
-}
-[data-theme="light"] .section-hero .h1,
-[data-theme="light"] .section-hero .h2 { color: #f0f0f0; }
 [data-theme="light"] .section-hero .eyebrow { color: var(--red); }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 56px; }
 @media (max-width: 900px) {
