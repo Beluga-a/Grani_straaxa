@@ -28,10 +28,15 @@ export default function AdminPage() {
   const [profileName,  setProfileName]  = useState('')
   const [profilePhone, setProfilePhone] = useState('')
   const [profilePwd,   setProfilePwd]   = useState('')
+  const [gallery,      setGallery]      = useState<any[]>([])
+  const [glCat,        setGlCat]        = useState('rooms')
+  const [glLabel,      setGlLabel]      = useState('')
+  const [glUploading,  setGlUploading]  = useState(false)
 
   useEffect(() => { getBookings().then(setBookings) }, [])
   useEffect(() => { fetch('/api/users').then(r=>r.json()).then(setUsers).catch(()=>{}) }, [])
   useEffect(() => { fetch('/api/reviews').then(r=>r.json()).then(setReviews).catch(()=>{}) }, [])
+  useEffect(() => { fetch('/api/gallery').then(r=>r.json()).then(setGallery).catch(()=>{}) }, [])
   useEffect(() => { if (user) { setProfileName(user.name); setProfilePhone(user.phone) } }, [user])
 
   const refreshBookings = () => getBookings().then(setBookings)
@@ -107,6 +112,7 @@ export default function AdminPage() {
     { id:'quests',    icon:'skull',    label:'Квесты' },
     { id:'bookings',  icon:'calendar', label:'Бронирования' },
     { id:'users',     icon:'users',    label:'Пользователи' },
+    { id:'gallery',   icon:'palette',  label:'Галерея' },
     ...(isDir ? [{ sec:'Аналитика' }, { id:'finance', icon:'star' as IconName, label:'Финансы' }, { sec:'Настройки' }, { id:'settings', icon:'settings' as IconName, label:'Настройки' }] : []),
     { sec:'Аккаунт' },
     { id:'myprofile', icon:'user',  label:'Мой профиль' },
@@ -357,6 +363,87 @@ export default function AdminPage() {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              )}
+            </>
+          )}
+
+          {panel === 'gallery' && (
+            <>
+              <h1 style={{fontFamily:'var(--serif)',fontSize:30,fontWeight:300,marginBottom:24}}>Галерея</h1>
+
+              {/* Загрузка фото */}
+              <div style={{background:'var(--panel)',border:'1px solid var(--border)',padding:28,marginBottom:32}}>
+                <div style={{fontFamily:'var(--serif)',fontSize:18,fontWeight:300,marginBottom:20}}>Добавить фото</div>
+                <div style={{display:'flex',gap:12,flexWrap:'wrap',alignItems:'flex-end'}}>
+                  <div className="form-group" style={{margin:0}}>
+                    <label className="form-label">Подпись</label>
+                    <input className="form-input" style={{width:200}} value={glLabel} onChange={e=>setGlLabel(e.target.value)} placeholder="Название фото"/>
+                  </div>
+                  <div className="form-group" style={{margin:0}}>
+                    <label className="form-label">Категория</label>
+                    <select className="form-select" value={glCat} onChange={e=>setGlCat(e.target.value)}>
+                      <option value="rooms">Комнаты</option>
+                      <option value="actors">Актёры</option>
+                      <option value="players">Игроки</option>
+                    </select>
+                  </div>
+                  <div className="form-group" style={{margin:0}}>
+                    <label className="form-label">Файл</label>
+                    <input type="file" accept="image/*" className="form-input" style={{width:220,cursor:'pointer'}}
+                      onChange={async e => {
+                        const file = e.target.files?.[0]
+                        if (!file || !glLabel.trim()) { toast('Введите подпись'); return }
+                        setGlUploading(true)
+                        const reader = new FileReader()
+                        reader.onload = async ev => {
+                          const img = ev.target?.result as string
+                          const r = await fetch('/api/gallery', {
+                            method:'POST',
+                            headers:{'Content-Type':'application/json'},
+                            body: JSON.stringify({ cat: glCat, label: glLabel.trim(), img, h: 240 })
+                          })
+                          const data = await r.json()
+                          if (data.ok) {
+                            setGallery(prev => [...prev, { id: data.id, cat: glCat, label: glLabel.trim(), img, h: 240 }])
+                            setGlLabel('')
+                            toast('✓ Фото добавлено')
+                          }
+                          setGlUploading(false)
+                          e.target.value = ''
+                        }
+                        reader.readAsDataURL(file)
+                      }}
+                    />
+                  </div>
+                  {glUploading && <div style={{fontFamily:'var(--mono)',fontSize:12,color:'var(--muted)'}}>Загрузка…</div>}
+                </div>
+              </div>
+
+              {/* Список фото */}
+              <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(160px,1fr))',gap:12}}>
+                {gallery.map(g => (
+                  <div key={g.id} style={{position:'relative',border:'1px solid var(--border)',overflow:'hidden'}}>
+                    <img src={g.img} alt={g.label} style={{width:'100%',height:140,objectFit:'cover',display:'block'}}/>
+                    <div style={{padding:'8px 10px',background:'var(--panel)'}}>
+                      <div style={{fontSize:12,color:'var(--white)',fontWeight:300,marginBottom:4,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{g.label}</div>
+                      <div style={{fontFamily:'var(--mono)',fontSize:10,color:'var(--muted)',marginBottom:8}}>{g.cat}</div>
+                      <button
+                        style={{width:'100%',padding:'4px 0',border:'1px solid rgba(200,0,10,.4)',background:'transparent',color:'var(--red)',cursor:'pointer',fontFamily:'var(--mono)',fontSize:11}}
+                        onClick={async () => {
+                          if (!confirm(`Удалить «${g.label}»?`)) return
+                          await fetch(`/api/gallery/${g.id}`, { method:'DELETE' })
+                          setGallery(prev => prev.filter(x => x.id !== g.id))
+                          toast('✓ Удалено')
+                        }}
+                      >Удалить</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {gallery.length === 0 && (
+                <div style={{fontFamily:'var(--mono)',fontSize:13,color:'var(--muted)',padding:40,textAlign:'center',border:'1px solid var(--border)'}}>
+                  Галерея пуста — загрузите первое фото
                 </div>
               )}
             </>

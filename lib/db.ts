@@ -101,6 +101,14 @@ function initSchema(db: Database.Database) {
       text   TEXT,
       date   TEXT
     );
+
+    CREATE TABLE IF NOT EXISTS gallery (
+      id    INTEGER PRIMARY KEY AUTOINCREMENT,
+      cat   TEXT NOT NULL DEFAULT 'rooms',
+      label TEXT NOT NULL DEFAULT '',
+      img   TEXT NOT NULL,
+      h     INTEGER NOT NULL DEFAULT 240
+    );
   `)
 }
 
@@ -177,6 +185,23 @@ function migrateFromJson(db: Database.Database) {
         'INSERT INTO reviews (name, quest, rating, text, date) VALUES (?,?,?,?,?)'
       )
       for (const r of reviews) ins.run(r.name, r.quest, r.rating, r.text, r.date)
+    }
+  }
+
+  const galleryCount = (db.prepare('SELECT COUNT(*) as c FROM gallery').get() as any).c
+  if (galleryCount === 0) {
+    const galleryDir = path.join(process.cwd(), 'public', 'gallery')
+    if (fs.existsSync(galleryDir)) {
+      const ins = db.prepare('INSERT INTO gallery (cat, label, img, h) VALUES (?,?,?,?)')
+      const files = fs.readdirSync(galleryDir).filter(f => /\.(webp|jpg|jpeg|png|avif)$/i.test(f))
+      const heights = [240, 320, 190, 270, 220, 300, 250, 200, 340]
+      files.forEach((file, i) => {
+        const data = fs.readFileSync(path.join(galleryDir, file))
+        const ext = file.split('.').pop()!
+        const mime = ext === 'webp' ? 'image/webp' : ext === 'png' ? 'image/png' : ext === 'avif' ? 'image/avif' : 'image/jpeg'
+        const b64 = `data:${mime};base64,${data.toString('base64')}`
+        ins.run('rooms', file.replace(/\.\w+$/, ''), b64, heights[i % heights.length])
+      })
     }
   }
 }
