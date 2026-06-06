@@ -14,10 +14,10 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-  const body = await req.json() as { email: string; name?: string; phone?: string; password?: string }
+  const body = await req.json() as { email: string; name?: string; phone?: string; password?: string; role?: string }
   if (!findUserByEmail(body.email))
     return NextResponse.json({ error: 'Not found' }, { status: 404 })
-  const user = updateUser(body.email, { name: body.name, phone: body.phone, password: body.password })
+  const user = updateUser(body.email, { name: body.name, phone: body.phone, password: body.password, role: body.role })
   return NextResponse.json({ ok: true, user: { email: user.email, name: user.name, role: user.role, phone: user.phone } })
 }
 

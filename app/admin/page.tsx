@@ -325,7 +325,27 @@ export default function AdminPage() {
                           <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',color:'var(--white)',fontWeight:300,whiteSpace:'nowrap'}}>{u.name || '—'}</td>
                           <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',fontFamily:'var(--mono)',fontSize:12,whiteSpace:'nowrap'}}>{u.email}</td>
                           <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',fontFamily:'var(--mono)',fontSize:12,color:'var(--muted)',whiteSpace:'nowrap'}}>{u.phone || '—'}</td>
-                          <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)'}}><span className={`pill ${u.role==='director'?'pill-green':u.role==='admin'?'pill-amber':'pill-red'}`}>{(u.role||'user').toUpperCase()}</span></td>
+                          <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)'}}>
+                            {isDir ? (
+                              <select
+                                value={u.role || 'user'}
+                                className="form-select"
+                                style={{fontSize:12,padding:'3px 8px',width:'auto'}}
+                                onChange={async e => {
+                                  const newRole = e.target.value
+                                  await fetch('/api/users', { method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email: u.email, role: newRole }) })
+                                  setUsers(prev => prev.map(x => x.email === u.email ? { ...x, role: newRole } : x))
+                                  toast(`✓ Роль ${u.name || u.email} изменена на ${newRole.toUpperCase()}`)
+                                }}
+                              >
+                                <option value="user">USER</option>
+                                <option value="admin">ADMIN</option>
+                                <option value="director">DIRECTOR</option>
+                              </select>
+                            ) : (
+                              <span className={`pill ${u.role==='director'?'pill-green':u.role==='admin'?'pill-amber':'pill-red'}`}>{(u.role||'user').toUpperCase()}</span>
+                            )}
+                          </td>
                           <td style={{padding:'10px 14px',borderBottom:'1px solid var(--border)',whiteSpace:'nowrap'}}>
                             <button style={{padding:'4px 10px',border:'1px solid var(--border)',background:'transparent',color:'var(--muted)',cursor:'pointer',fontFamily:'var(--mono)',fontSize:12}}
                               onClick={()=>{

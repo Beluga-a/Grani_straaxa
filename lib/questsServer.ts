@@ -140,13 +140,14 @@ export function insertUser(u: { email: string; password: string; name: string; p
   ).run(u.email.toLowerCase(), u.password, u.role, u.name, u.phone)
 }
 
-export function updateUser(email: string, patch: { name?: string; phone?: string; password?: string }): any {
+export function updateUser(email: string, patch: { name?: string; phone?: string; password?: string; role?: string }): any {
   const db = getDb()
   const sets: string[] = []
   const vals: unknown[] = []
   if (patch.name !== undefined)     { sets.push('name = ?');     vals.push(patch.name) }
   if (patch.phone !== undefined)    { sets.push('phone = ?');    vals.push(patch.phone) }
   if (patch.password !== undefined) { sets.push('password = ?'); vals.push(patch.password) }
+  if (patch.role !== undefined)     { sets.push('role = ?');     vals.push(patch.role) }
   if (sets.length === 0) return findUserByEmail(email)
   vals.push(email.toLowerCase())
   db.prepare(`UPDATE users SET ${sets.join(', ')} WHERE email = ?`).run(...vals)
