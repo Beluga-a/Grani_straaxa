@@ -10,7 +10,7 @@ import styles from './Header.module.css'
 
 const NAV = [
   { label:'Квесты', href:'/quests', children:[{label:'Все квесты',href:'/quests'},{label:'Забронировать',href:'/booking'},{label:'Сертификаты',href:'/certificates'}]},
-  { label:'О нас', href:'/about', children:[{label:'О компании',href:'/about'}]},
+  { label:'О нас', href:'/about' },
   { label:'Галерея', href:'/gallery'},
   { label:'Отзывы', href:'/reviews'},
   { label:'Интерактив', href:'/feartest', children:[{label:'Тест на страх',href:'/feartest'},{label:'Мини-квест',href:'/simulator'},{label:'Live-статус',href:'/livemap'}]},
