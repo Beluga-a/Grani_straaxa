@@ -32,11 +32,13 @@ export default function AdminPage() {
   const [glCat,        setGlCat]        = useState('rooms')
   const [glLabel,      setGlLabel]      = useState('')
   const [glUploading,  setGlUploading]  = useState(false)
+  const [messages,     setMessages]     = useState<any[]>([])
 
   useEffect(() => { getBookings().then(setBookings) }, [])
   useEffect(() => { fetch('/api/users').then(r=>r.json()).then(setUsers).catch(()=>{}) }, [])
   useEffect(() => { fetch('/api/reviews').then(r=>r.json()).then(setReviews).catch(()=>{}) }, [])
   useEffect(() => { fetch('/api/gallery').then(r=>r.json()).then(setGallery).catch(()=>{}) }, [])
+  useEffect(() => { fetch('/api/messages').then(r=>r.json()).then(setMessages).catch(()=>{}) }, [])
   useEffect(() => { if (user) { setProfileName(user.name); setProfilePhone(user.phone) } }, [user])
 
   const refreshBookings = () => getBookings().then(setBookings)
@@ -114,6 +116,7 @@ export default function AdminPage() {
     { id:'users',     icon:'users',    label:'Пользователи' },
     { id:'gallery',   icon:'palette',  label:'Галерея' },
     { id:'reviews',   icon:'star',     label:'Отзывы' },
+    { id:'messages',  icon:'mail',     label:'Сообщения' },
     ...(isDir ? [{ sec:'Аналитика' }, { id:'finance', icon:'star' as IconName, label:'Финансы' }, { sec:'Настройки' }, { id:'settings', icon:'settings' as IconName, label:'Настройки' }] : []),
     { sec:'Аккаунт' },
     { id:'myprofile', icon:'user',  label:'Мой профиль' },
@@ -491,6 +494,42 @@ export default function AdminPage() {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              )}
+            </>
+          )}
+
+          {panel === 'messages' && (
+            <>
+              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:24,flexWrap:'wrap',gap:12}}>
+                <h1 style={{fontFamily:'var(--serif)',fontSize:30,fontWeight:300}}>Сообщения</h1>
+                <div style={{fontFamily:'var(--mono)',fontSize:12,color:'var(--muted)',letterSpacing:'.1em'}}>{messages.length} сообщений</div>
+              </div>
+              {messages.length === 0 ? (
+                <div style={{fontFamily:'var(--mono)',fontSize:13,color:'var(--muted)',padding:40,textAlign:'center',border:'1px solid var(--border)'}}>
+                  Сообщений пока нет
+                </div>
+              ) : (
+                <div style={{display:'flex',flexDirection:'column',gap:16}}>
+                  {messages.map((m: any) => (
+                    <div key={m.id} style={{background:'var(--panel)',border:'1px solid var(--border)',padding:24}}>
+                      <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:12,flexWrap:'wrap',gap:8}}>
+                        <div>
+                          <span style={{fontFamily:'var(--serif)',fontSize:17,fontWeight:300,color:'var(--white)'}}>{m.name}</span>
+                          <span style={{fontFamily:'var(--mono)',fontSize:12,color:'var(--muted)',marginLeft:14}}>{m.contact}</span>
+                        </div>
+                        <div style={{display:'flex',alignItems:'center',gap:10}}>
+                          {m.sent_by_email ? (
+                            <span style={{fontFamily:'var(--mono)',fontSize:10,color:'#00cc66',border:'1px solid rgba(0,204,102,.3)',padding:'2px 8px'}}>EMAIL ✓</span>
+                          ) : (
+                            <span style={{fontFamily:'var(--mono)',fontSize:10,color:'var(--muted)',border:'1px solid var(--border)',padding:'2px 8px'}}>ТОЛЬКО БД</span>
+                          )}
+                          <span style={{fontFamily:'var(--mono)',fontSize:11,color:'var(--muted)'}}>{m.created_at}</span>
+                        </div>
+                      </div>
+                      <div style={{fontSize:14,color:'var(--text-soft)',lineHeight:1.7,whiteSpace:'pre-wrap'}}>{m.message}</div>
+                    </div>
+                  ))}
                 </div>
               )}
             </>

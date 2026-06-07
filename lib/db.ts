@@ -3,7 +3,9 @@ import Database from 'better-sqlite3'
 import path from 'path'
 import fs from 'fs'
 
-const DB_PATH = path.join(process.cwd(), 'data', 'granistrakha.db')
+const DB_PATH = process.env.DATA_DIR
+  ? path.join(process.env.DATA_DIR, 'granistrakha.db')
+  : path.join(process.cwd(), 'data', 'granistrakha.db')
 
 let _db: Database.Database | null = null
 
@@ -108,6 +110,15 @@ function initSchema(db: Database.Database) {
       label TEXT NOT NULL DEFAULT '',
       img   TEXT NOT NULL,
       h     INTEGER NOT NULL DEFAULT 240
+    );
+
+    CREATE TABLE IF NOT EXISTS messages (
+      id           INTEGER PRIMARY KEY AUTOINCREMENT,
+      name         TEXT NOT NULL,
+      contact      TEXT NOT NULL,
+      message      TEXT NOT NULL,
+      created_at   TEXT NOT NULL DEFAULT (datetime('now')),
+      sent_by_email INTEGER NOT NULL DEFAULT 0
     );
   `)
 }

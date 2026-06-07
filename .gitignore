@@ -2,10 +2,8 @@ node_modules/
 .next/
 .env.local
 *.log
-*.sqlite
 *.db
+*.db-shm
+*.db-wal
 cloudflared.exe
 .npm-cache/
-*.txt
-tsconfig.tsbuildinfo
-{app/
