@@ -8,6 +8,7 @@ export async function POST(req: Request) {
   if (!name || !contact || !message)
     return NextResponse.json({ error: 'Заполните все поля' }, { status: 400 })
 
+  // Сначала сохраняем в БД — это всегда работает
   const db = getDb()
   let sentByEmail = 0
 
@@ -19,24 +20,35 @@ export async function POST(req: Request) {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: { user, pass },
+        connectionTimeout: 5000,   // 5 сек на подключение
+        greetingTimeout: 5000,
+        socketTimeout: 8000,
       })
-      await transporter.sendMail({
-        from: `"Грани Страха — Сайт" <${user}>`,
-        to: user,
-        subject: `Новое сообщение от ${name}`,
-        html: `
-          <div style="font-family:sans-serif;max-width:500px">
-            <h2 style="color:#c8000a">Новое сообщение с сайта</h2>
-            <p><b>Имя:</b> ${name}</p>
-            <p><b>Контакт:</b> ${contact}</p>
-            <p><b>Сообщение:</b></p>
-            <p style="background:#f5f5f5;padding:12px;border-left:3px solid #c8000a">${message.replace(/\n/g, '<br>')}</p>
-          </div>
-        `,
-      })
+
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('email timeout')), 8000)
+      )
+
+      await Promise.race([
+        transporter.sendMail({
+          from: `"Грани Страха — Сайт" <${user}>`,
+          to: user,
+          subject: `Новое сообщение от ${name}`,
+          html: `
+            <div style="font-family:sans-serif;max-width:500px">
+              <h2 style="color:#c8000a">Новое сообщение с сайта</h2>
+              <p><b>Имя:</b> ${name}</p>
+              <p><b>Контакт:</b> ${contact}</p>
+              <p><b>Сообщение:</b></p>
+              <p style="background:#f5f5f5;padding:12px;border-left:3px solid #c8000a">${message.replace(/\n/g, '<br>')}</p>
+            </div>
+          `,
+        }),
+        timeout,
+      ])
       sentByEmail = 1
     } catch (err) {
-      console.error('[contact] email send failed:', err)
+      console.error('[contact] email send failed:', (err as Error).message)
     }
   }
 
