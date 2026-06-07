@@ -18,11 +18,13 @@ export async function POST(req: Request) {
   if (user && pass) {
     try {
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,             // STARTTLS на порту 587
         auth: { user, pass },
-        connectionTimeout: 5000,   // 5 сек на подключение
-        greetingTimeout: 5000,
-        socketTimeout: 8000,
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 10000,
       })
 
       const timeout = new Promise<never>((_, reject) =>
