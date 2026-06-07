@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
 import { getDb } from '@/lib/db'
 
 export async function POST(req: Request) {
@@ -8,33 +7,26 @@ export async function POST(req: Request) {
   if (!name || !contact || !message)
     return NextResponse.json({ error: 'Заполните все поля' }, { status: 400 })
 
-  // Сначала сохраняем в БД — это всегда работает
   const db = getDb()
   let sentByEmail = 0
 
-  const user = process.env.GMAIL_USER
-  const pass = process.env.GMAIL_APP_PASSWORD
+  const apiKey = process.env.RESEND_API_KEY
+  const toEmail = process.env.GMAIL_USER
 
-  if (user && pass) {
+  if (apiKey && toEmail) {
     try {
-      const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,             // STARTTLS на порту 587
-        auth: { user, pass },
-        connectionTimeout: 8000,
-        greetingTimeout: 8000,
-        socketTimeout: 10000,
-      })
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), 8000)
 
-      const timeout = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('email timeout')), 8000)
-      )
-
-      await Promise.race([
-        transporter.sendMail({
-          from: `"Грани Страха — Сайт" <${user}>`,
-          to: user,
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'Грани Страха <onboarding@resend.dev>',
+          to: [toEmail],
           subject: `Новое сообщение от ${name}`,
           html: `
             <div style="font-family:sans-serif;max-width:500px">
@@ -46,11 +38,14 @@ export async function POST(req: Request) {
             </div>
           `,
         }),
-        timeout,
-      ])
-      sentByEmail = 1
+        signal: controller.signal,
+      })
+
+      clearTimeout(timer)
+      if (res.ok) sentByEmail = 1
+      else console.error('[contact] resend error:', await res.text())
     } catch (err) {
-      console.error('[contact] email send failed:', (err as Error).message)
+      console.error('[contact] email failed:', (err as Error).message)
     }
   }
 
