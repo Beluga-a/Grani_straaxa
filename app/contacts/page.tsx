@@ -11,7 +11,10 @@ export default function ContactsPage() {
     if(!name||!contact||!msg)return toast('Заполните все поля')
     setSending(true)
     try{
-      const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,contact,message:msg})})
+      const controller=new AbortController()
+      const timer=setTimeout(()=>controller.abort(),12000)
+      const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,contact,message:msg}),signal:controller.signal})
+      clearTimeout(timer)
       if(!r.ok)throw new Error()
       setName('');setContact('');setMsg('');toast('Сообщение отправлено!')
     }catch{
