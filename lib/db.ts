@@ -3,9 +3,18 @@ import Database from 'better-sqlite3'
 import path from 'path'
 import fs from 'fs'
 
-const DB_PATH = process.env.DATA_DIR
-  ? path.join(process.env.DATA_DIR, 'granistrakha.db')
-  : path.join(process.cwd(), 'data', 'granistrakha.db')
+function resolveDbPath() {
+  if (process.env.DATA_DIR) {
+    try {
+      fs.mkdirSync(process.env.DATA_DIR, { recursive: true })
+      return path.join(process.env.DATA_DIR, 'granistrakha.db')
+    } catch {
+      // fallback ниже
+    }
+  }
+  return path.join(process.cwd(), 'data', 'granistrakha.db')
+}
+const DB_PATH = resolveDbPath()
 
 let _db: Database.Database | null = null
 
